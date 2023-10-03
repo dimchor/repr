@@ -13,7 +13,7 @@ std::string repr(void const* ptr)
     return std::format("{}", ptr);
 }
 
-std::string repr(std::string const& cpp_string)
+std::string const& repr(std::string const& cpp_string)
 {
     return cpp_string;
 }

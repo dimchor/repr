@@ -21,7 +21,7 @@ std::string repr(std::nullptr_t);
 
 std::string repr(void const*);
 
-std::string repr(std::string const&);
+std::string const& repr(std::string const&);
 
 std::string quoted(auto const& obj, char delim = '\"')
 {
