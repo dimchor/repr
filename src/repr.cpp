@@ -5,7 +5,7 @@ namespace dl
 
 std::string repr(std::nullptr_t null)
 {
-    return "null";
+    return "nullptr";
 }
 
 std::string repr(char const* c_string)

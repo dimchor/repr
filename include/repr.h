@@ -8,7 +8,7 @@ namespace dl
 {
 
 template<typename T, 
-    std::enable_if_t<std::is_fundamental<T>::value, bool> = true>
+    std::enable_if_t<std::is_fundamental_v<T>, bool> = true>
 std::string repr(T const obj)
 {
     return std::format("{}", obj);
