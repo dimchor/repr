@@ -7,24 +7,25 @@
 namespace dl
 {
 
-template<typename T, 
-    std::enable_if_t<std::is_fundamental_v<T>, bool> = true>
-std::string repr(T const obj)
+template<typename T>
+concept TriviallyRepresentable = std::is_fundamental_v<T> or
+                                 std::is_same_v<T, char const*>;
+
+template<typename T>
+std::string repr(T const obj) requires TriviallyRepresentable<T>
 {
     return std::format("{}", obj);
 }
 
 std::string repr(std::nullptr_t);
 
-std::string repr(char const*);
-
 std::string repr(void const*);
 
 std::string repr(std::string const&);
 
-std::string quoted(auto const& obj, char type = '\"')
+std::string quoted(auto const& obj, char delim = '\"')
 {
-    return std::format("{:c}{}{:c}", type, repr(obj), type);
+    return std::format("{:c}{}{:c}", delim, repr(obj), delim);
 }
 
 } // namespace dl

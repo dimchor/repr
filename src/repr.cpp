@@ -8,11 +8,6 @@ std::string repr(std::nullptr_t null)
     return "nullptr";
 }
 
-std::string repr(char const* c_string)
-{
-    return std::format("{}", c_string);
-}
-
 std::string repr(void const* ptr)
 {
     return std::format("{}", ptr);
