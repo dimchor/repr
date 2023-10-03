@@ -1,0 +1,12 @@
+CMakeFiles/
+CMakeCache.txt
+*.cmake
+Makefile
+
+.vscode/
+
+*.out
+*.o
+*.a
+
+example[0-9]
