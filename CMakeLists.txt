@@ -21,5 +21,7 @@ install(TARGETS repr
 
 add_executable(example1 examples/example1)
 add_executable(example2 examples/example2)
+add_executable(example3 examples/example3)
 target_link_libraries(example1 repr)
 target_link_libraries(example2 repr)
+target_link_libraries(example3 repr)
