@@ -20,6 +20,8 @@ concept IsIterator = requires(Iterator it)
 
     {++it} -> std::same_as<Iterator&>;
     {it++} -> std::same_as<Iterator>;
+    {--it} -> std::same_as<Iterator&>;
+    {it--} -> std::same_as<Iterator>;
 
     {it == it} -> std::same_as<bool>;
     {it != it} -> std::same_as<bool>;
