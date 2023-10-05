@@ -4,6 +4,8 @@
 #include <format>
 #include <type_traits>
 #include <iterator>
+#include <tuple>
+#include <utility>
 
 namespace dl
 {
@@ -35,19 +37,47 @@ concept IsIteratable = requires(T t)
     {t.end()} -> IsIterator;
 };
 
-template<typename T>
-std::string repr(T const obj) requires TriviallyRepresentable<T>
+std::string repr(TriviallyRepresentable auto const&);
+std::string repr(IsIteratable auto const&);
+template<typename T1, typename T2>
+std::string repr(std::pair<T1, T2> const&);
+template<typename... Args>
+std::string repr(std::tuple<Args...> const&);
+std::string repr(IsIteratable auto const&);
+std::string quoted(auto const&, char = '\"');
+
+std::string repr(std::nullptr_t);
+std::string repr(void const*);
+std::string const& repr(std::string const&);
+
+std::string repr(TriviallyRepresentable auto const& obj)
 {
     return std::format("{}", obj);
 }
 
-std::string repr(std::nullptr_t);
+template<typename T1, typename T2>
+std::string repr(std::pair<T1, T2> const& pair)
+{
+    return std::format("({}, {})", pair.first, pair.second);
+}
 
-std::string repr(void const*);
+template<typename... Args>
+std::string repr(std::tuple<Args...> const& tuple)
+{
+    if (sizeof...(Args) < 1) { return "( (empty) )"; }
+    std::string s{"( "};
+    std::apply(
+        [&s] (Args const&... args)
+        {
+            std::size_t n{};
+            (( s+= repr(args) + (++n != sizeof...(Args) ? ", " : " )")), ...);
+        },
+        tuple
+    );
+    return s;
+}
 
-std::string const& repr(std::string const&);
-
-std::string quoted(auto const& obj, char delim = '\"')
+std::string quoted(auto const& obj, char delim)
 {
     return std::format("{:c}{}{:c}", delim, repr(obj), delim);
 }

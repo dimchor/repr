@@ -7,6 +7,7 @@
 #include <map>
 #include <set>
 #include <stack>
+#include <tuple>
 
 int main()
 {
@@ -38,6 +39,17 @@ int main()
     container.insert(9);
 
     std::cout << dl::repr(container) << '\n';
+
+    std::map<int, int> m{};
+    m[1] = 2;
+    m[3] = 8;
+
+    std::cout << dl::quoted(dl::repr(dl::quoted(m))) << '\n';
+
+    std::cout << dl::repr(dl::quoted(std::make_pair(7, 8))) << '\n';
+
+    std::cout << dl::repr(dl::quoted(std::make_tuple("float", 3.14, -8), '%')) 
+        << '\n';
 
     return 0;
 }
