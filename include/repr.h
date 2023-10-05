@@ -58,7 +58,7 @@ std::string repr(TriviallyRepresentable auto const& obj)
 template<typename T1, typename T2>
 std::string repr(std::pair<T1, T2> const& pair)
 {
-    return std::format("({}, {})", pair.first, pair.second);
+    return std::format("( {}, {} )", pair.first, pair.second);
 }
 
 template<typename... Args>
