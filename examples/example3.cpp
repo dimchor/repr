@@ -10,6 +10,7 @@
 #include <deque>
 #include <forward_list>
 #include <stack>
+#include <queue>
 
 int main()
 {
@@ -73,6 +74,26 @@ int main()
 
     constexpr unsigned array[]{1, 2, 3, 4};
     std::cout << dl::repr(std::span{array}) << '\n';
+
+    std::stack<int> s{};
+    std::cout << dl::repr(s) << '\n';
+    s.push(1);
+    s.push(2);
+    std::cout << dl::repr(s) << '\n';
+
+    std::queue<float> q{};
+    std::cout << dl::repr(q) << '\n';
+    q.push(1.1f);
+    q.push(2.2f);
+    q.push(3.3f);
+    std::cout << dl::repr(q) << '\n';
+
+    std::priority_queue<float> pq{};
+    std::cout << dl::repr(pq) << '\n';
+    pq.push(1.1f);
+    pq.push(2.2f);
+    pq.push(3.3f);
+    std::cout << dl::repr(pq) << '\n';
 
     return 0;
 }

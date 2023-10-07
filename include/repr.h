@@ -6,6 +6,8 @@
 #include <iterator>
 #include <tuple>
 #include <utility>
+#include <stack>
+#include <queue>
 
 namespace dl
 {
@@ -42,6 +44,12 @@ std::string repr(std::pair<T1, T2> const&);
 template<typename... Args>
 std::string repr(std::tuple<Args...> const&);
 std::string repr(IsIteratable auto const&);
+template<typename T>
+std::string repr(std::stack<T> const&);
+template<typename T>
+std::string repr(std::queue<T> const&);
+template<typename T>
+std::string repr(std::priority_queue<T> const&);
 std::string quoted(auto const&, char = '\"');
 
 std::string repr(std::nullptr_t);
@@ -75,9 +83,25 @@ std::string repr(std::tuple<Args...> const& tuple)
     return s;
 }
 
-std::string quoted(auto const& obj, char delim)
+template<typename T>
+std::string repr(std::stack<T> const& stack)
 {
-    return std::format("{:c}{}{:c}", delim, repr(obj), delim);
+    if (stack.empty()) { return "(empty)"; }
+    return std::format("top(): {}", stack.top());
+}
+
+template<typename T>
+std::string repr(std::queue<T> const& queue)
+{
+    if (queue.empty()) { return "(empty)"; }
+    return std::format("front(): {}, back(): {}", queue.front(), queue.back());
+}
+
+template<typename T>
+std::string repr(std::priority_queue<T> const& priority_queue)
+{
+    if (priority_queue.empty()) { return "(empty)"; }
+    return std::format("top(): {}", priority_queue.top());
 }
 
 std::string repr(IsIteratable auto const& container)
@@ -94,6 +118,11 @@ std::string repr(IsIteratable auto const& container)
         }
     }
     return s;
+}
+
+std::string quoted(auto const& obj, char delim)
+{
+    return std::format("{:c}{}{:c}", delim, repr(obj), delim);
 }
 
 } // namespace dl
