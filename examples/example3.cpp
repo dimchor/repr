@@ -12,6 +12,24 @@
 #include <stack>
 #include <queue>
 
+
+void print(auto const c)
+{
+    std::cout << std::format("Is const?: {}\n{}\n", 
+        std::is_const_v<decltype(c)>, 
+        dl::repr(c));
+}
+
+
+/*
+void print(auto c)
+{
+    std::cout << std::format("Is const?: {}\n{}\n", 
+        std::is_const_v<decltype(c)>, 
+        dl::repr(c));
+}
+*/
+
 int main()
 {
     /*
@@ -34,18 +52,18 @@ int main()
     */
 
     std::vector<int> v{1, 2, 3, 4};
-    std::cout << dl::repr(v) << '\n';
+    print(v);
 
-    std::set<int> container{};
-    //container.resize(10000);
-
-    container.insert(9);
-
-    std::cout << dl::repr(container) << '\n';
+    std::set<int> set{};
+    print(set);
+    set.insert(9);
+    print(set);
 
     std::map<int, int> m{};
     m[1] = 2;
     m[3] = 8;
+    print(m);
+
 
     std::cout << dl::quoted(dl::repr(dl::quoted(m))) << '\n';
 
@@ -55,45 +73,49 @@ int main()
         << '\n';
 
     std::deque<int> d{1, 2, 3, 4};
-    std::cout << dl::repr(d) << '\n';
+    print(d);
 
     std::forward_list<float> fl{1.1f, 2.2f, 3.3f, 4.4f};
-    std::cout << dl::repr(fl) << '\n';
+    print(fl);
+
 
     std::list<bool> l{true, false, true, false};
-    std::cout << dl::repr(l) << '\n';
+    print(l);
 
     std::multiset<double> ms{1.2, 2.3, 3.4, 3.4};
-    std::cout << dl::repr(ms) << '\n';
+     print(ms);
+
 
     std::multimap<int, int> mm{};
+    print(mm);
     mm.insert(std::make_pair(1, 2));
     mm.insert(std::make_pair(3, 8));
     mm.insert(std::make_pair(3, 6));
-    std::cout << dl::repr(mm) << '\n';
+    print(mm);
 
     constexpr unsigned array[]{1, 2, 3, 4};
-    std::cout << dl::repr(std::span{array}) << '\n';
+    std::span sp{array};
+    print(sp);
 
     std::stack<int> s{};
-    std::cout << dl::repr(s) << '\n';
+    print(s);
     s.push(1);
     s.push(2);
-    std::cout << dl::repr(s) << '\n';
+    print(s);
 
     std::queue<float> q{};
-    std::cout << dl::repr(q) << '\n';
+    print(q);
     q.push(1.1f);
     q.push(2.2f);
     q.push(3.3f);
-    std::cout << dl::repr(q) << '\n';
+    print(q);
 
     std::priority_queue<float> pq{};
-    std::cout << dl::repr(pq) << '\n';
+    print(pq);
     pq.push(1.1f);
     pq.push(2.2f);
     pq.push(3.3f);
-    std::cout << dl::repr(pq) << '\n';
+    print(pq);
 
     return 0;
 }
