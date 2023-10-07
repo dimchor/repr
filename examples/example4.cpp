@@ -22,7 +22,7 @@ class NonRepresentable{};
 int main()
 {
     std::cout << dl::repr(Representable{5}) << '\n';
-    // compiler error
+    // compilation error
     // std::cout << dl::repr(NonRepresentable{}) << '\n';
 
     return 0;
