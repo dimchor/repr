@@ -37,6 +37,12 @@ concept IsIteratable = requires(T t)
     {t.end()} -> IsIterator;
 };
 
+template<typename T>
+concept HasReprMethod = requires(T const& t)
+{
+    {t.repr()} -> std::same_as<std::string>;
+};
+
 std::string repr(TriviallyRepresentable auto const&);
 std::string repr(IsIteratable auto const&);
 template<typename T1, typename T2>
@@ -118,6 +124,11 @@ std::string repr(IsIteratable auto const& container)
         }
     }
     return s;
+}
+
+std::string repr(HasReprMethod auto const& obj)
+{
+    return obj.repr();
 }
 
 std::string quoted(auto const& obj, char delim)
