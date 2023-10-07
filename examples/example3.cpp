@@ -59,5 +59,20 @@ int main()
     std::forward_list<float> fl{1.1f, 2.2f, 3.3f, 4.4f};
     std::cout << dl::repr(fl) << '\n';
 
+    std::list<bool> l{true, false, true, false};
+    std::cout << dl::repr(l) << '\n';
+
+    std::multiset<double> ms{1.2, 2.3, 3.4, 3.4};
+    std::cout << dl::repr(ms) << '\n';
+
+    std::multimap<int, int> mm{};
+    mm.insert(std::make_pair(1, 2));
+    mm.insert(std::make_pair(3, 8));
+    mm.insert(std::make_pair(3, 6));
+    std::cout << dl::repr(mm) << '\n';
+
+    constexpr unsigned array[]{1, 2, 3, 4};
+    std::cout << dl::repr(std::span{array}) << '\n';
+
     return 0;
 }
