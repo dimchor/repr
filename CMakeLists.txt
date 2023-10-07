@@ -1,3 +1,4 @@
+cmake_minimum_required(VERSION 3.20)
 project(repr)
 
 set(SOURCES
@@ -19,9 +20,9 @@ install(TARGETS repr
 
 # examples
 
-add_executable(example1 examples/example1)
-add_executable(example2 examples/example2)
-add_executable(example3 examples/example3)
+add_executable(example1 examples/example1.cpp)
+add_executable(example2 examples/example2.cpp)
+add_executable(example3 examples/example3.cpp)
 target_link_libraries(example1 repr)
 target_link_libraries(example2 repr)
 target_link_libraries(example3 repr)
