@@ -6,8 +6,10 @@
 #include <list>
 #include <map>
 #include <set>
-#include <stack>
 #include <tuple>
+#include <deque>
+#include <forward_list>
+#include <stack>
 
 int main()
 {
@@ -50,6 +52,12 @@ int main()
 
     std::cout << dl::repr(dl::quoted(std::make_tuple("float", 3.14, -8), '%')) 
         << '\n';
+
+    std::deque<int> d{1, 2, 3, 4};
+    std::cout << dl::repr(d) << '\n';
+
+    std::forward_list<float> fl{1.1f, 2.2f, 3.3f, 4.4f};
+    std::cout << dl::repr(fl) << '\n';
 
     return 0;
 }

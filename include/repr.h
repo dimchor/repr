@@ -85,10 +85,12 @@ std::string repr(IsIteratable auto const& container)
     if (container.empty()) { return "[ (empty) ]"; } 
     std::string s{"[ "};
     {
-        std::size_t n{};
+        long int n{};
+        long int const size{ // always positive since we start from begin()
+            std::distance(container.begin(), container.end())};
         for (auto it{container.begin()}; it != container.end(); ++it)
         {
-            s+= repr(*it) + (++n != container.size() ? ", " : " ]");
+            s+= repr(*it) + (++n != size ? ", " : " ]");
         }
     }
     return s;
