@@ -9,6 +9,7 @@
 #include <tuple>
 #include <deque>
 #include <forward_list>
+#include <array>
 #include <stack>
 #include <queue>
 
@@ -116,6 +117,9 @@ int main()
     pq.push(2.2f);
     pq.push(3.3f);
     print(pq);
+
+    std::array<int, 4> cpp_array{1, 2, 3, 4};
+    print(cpp_array);
 
     return 0;
 }
