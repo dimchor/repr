@@ -22,8 +22,6 @@ concept IsIterator = requires(Iterator it)
 
     {++it} -> std::same_as<Iterator&>;
     {it++} -> std::same_as<Iterator>;
-    {--it} -> std::same_as<Iterator&>;
-    {it--} -> std::same_as<Iterator>;
 
     {it == it} -> std::same_as<bool>;
     {it != it} -> std::same_as<bool>;
@@ -87,12 +85,11 @@ std::string repr(IsIteratable auto const& container)
     if (container.empty()) { return "[ (empty) ]"; } 
     std::string s{"[ "};
     {
-        auto it{container.begin()};
-        for (; it != std::prev(container.end()); ++it)
+        std::size_t n{};
+        for (auto it{container.begin()}; it != container.end(); ++it)
         {
-            s+= repr(*it) + ", ";
+            s+= repr(*it) + (++n != container.size() ? ", " : " ]");
         }
-        s += repr(*it) + " ]";
     }
     return s;
 }
