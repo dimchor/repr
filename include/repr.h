@@ -5,6 +5,7 @@
 #include <type_traits>
 #include <iterator>
 #include <tuple>
+#include <optional>
 #include <utility>
 #include <stack>
 #include <queue>
@@ -166,6 +167,12 @@ template<typename T>
 std::string repr(std::initializer_list<T> l)
 {
     return repr(std::vector<T>{std::move(l)});
+}
+
+template<typename T>
+std::string repr(std::optional<T> o)
+{
+    return (o.has_value() ? repr(*o) : "std::nullopt");
 }
 
 std::string quoted(auto const& obj, char delim)

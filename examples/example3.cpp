@@ -7,6 +7,7 @@
 #include <map>
 #include <set>
 #include <tuple>
+#include <optional>
 #include <deque>
 #include <forward_list>
 #include <array>
@@ -21,6 +22,10 @@ void print(auto const c)
         dl::repr(c));
 }
 
+auto mayhaps(bool b)
+{
+    return (b ? std::optional<std::string>{"Popsicle"} : std::nullopt);
+}
 
 /*
 void print(auto c)
@@ -72,6 +77,9 @@ int main()
 
     std::cout << dl::repr(dl::quoted(std::make_tuple("float", 3.14, -8), '%')) 
         << '\n';
+
+    std::cout << dl::repr(mayhaps(true)) << '\n';
+    std::cout << dl::repr(mayhaps(false)) << '\n';
 
     std::deque<int> d{1, 2, 3, 4};
     print(d);
