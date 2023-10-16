@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cstddef>
 #include <any>
+#include <complex>
 
 // other types
 
@@ -22,5 +23,11 @@ int main()
 
     std::any b = 42;
     std::cout << dl::repr<int>(b) << '\n';
+
+    using namespace std::complex_literals;
+
+    std::complex<double> z{1.0 - 4i};
+    std::cout << dl::repr(z) << '\n';
+
     return 0;
 }

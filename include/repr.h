@@ -14,6 +14,8 @@
 #include <cstdint>
 #include <initializer_list>
 #include <any>
+#include <complex>
+#include <cmath>
 
 namespace dl
 {
@@ -75,6 +77,8 @@ template<typename T>
 std::string repr(std::optional<T>);
 template<typename T>
 std::string repr(std::any const&);
+template<typename T>
+std::string repr(std::complex<T> const&);
 
 std::string repr(std::nullptr_t);
 std::string repr(void const*);
@@ -184,6 +188,13 @@ template<typename T>
 std::string repr(std::any const& a)
 {
     return (a.has_value() ? repr(std::any_cast<T>(a)) : "any: no value");
+}
+
+template<typename T>
+std::string repr(std::complex<T> const& c)
+{
+    return std::format("{} {:c} {}i", c.real(), (c.imag() < 0 ? '-' : '+'), 
+        std::abs(c.imag()));
 }
 
 std::string quoted(auto const& obj, char delim)
