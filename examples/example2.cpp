@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <cstddef>
+#include <any>
 
 // other types
 
@@ -19,5 +20,7 @@ int main()
     std::cout << dl::repr(std::byte{0b11111000}) << '\n';
     std::cout << dl::repr(std::byte{0b10101010}) << '\n';
 
+    std::any b = 42;
+    std::cout << dl::repr<int>(b) << '\n';
     return 0;
 }

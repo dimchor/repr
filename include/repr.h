@@ -178,6 +178,12 @@ std::string repr(std::optional<T> o)
     return (o.has_value() ? repr(*o) : "std::nullopt");
 }
 
+template<typename T>
+std::string repr(std::any const& a)
+{
+    return (a.has_value() ? repr(std::any_cast<T>(a)) : "any: no value");
+}
+
 std::string quoted(auto const& obj, char delim)
 {
     return std::format("{:c}{}{:c}", delim, repr(obj), delim);
