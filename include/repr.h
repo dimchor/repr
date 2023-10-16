@@ -9,6 +9,8 @@
 #include <stack>
 #include <queue>
 #include <memory>
+#include <cstddef>
+#include <cstdint>
 
 namespace dl
 {
@@ -68,6 +70,7 @@ std::string quoted(auto const&, char = '\"');
 std::string repr(std::nullptr_t);
 std::string repr(void const*);
 std::string const& repr(std::string const&);
+std::string repr(std::byte);
 
 std::string repr(TriviallyRepresentable auto const& obj)
 {

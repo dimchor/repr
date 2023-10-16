@@ -1,8 +1,9 @@
 #include "../include/repr.h"
 
 #include <iostream>
+#include <cstddef>
 
-// fundamentals
+// other types
 
 int main()
 {
@@ -14,6 +15,9 @@ int main()
     std::cout << dl::repr("null") << '\n';
     std::cout << dl::repr(dl::quoted("null")) << '\n';
     std::cout << dl::repr(dl::quoted(3.14, '$')) << '\n';
+
+    std::cout << dl::repr(std::byte{0b11111000}) << '\n';
+    std::cout << dl::repr(std::byte{0b10101010}) << '\n';
 
     return 0;
 }
