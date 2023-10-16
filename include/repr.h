@@ -13,6 +13,7 @@
 #include <cstddef>
 #include <cstdint>
 #include <initializer_list>
+#include <any>
 
 namespace dl
 {
@@ -70,6 +71,8 @@ std::string repr(std::weak_ptr<T> const&);
 template<typename T>
 std::string repr(std::initializer_list<T>);
 std::string quoted(auto const&, char = '\"');
+template<typename T>
+std::string repr(std::optional<T>);
 
 std::string repr(std::nullptr_t);
 std::string repr(void const*);
