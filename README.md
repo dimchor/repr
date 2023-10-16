@@ -19,6 +19,10 @@
     - `std::stack` (prints `top()`),
     - `std::queue` (prints `front()` and `back()`),
     - `std::priority_queue` (prints `top()`).
+- Memory:
+    - `std::unique_ptr`
+    - `std::shared_ptr`
+    - `std::weak_ptr`
 - Other:
     - `std::pair`,
     - `std::tuple`,

@@ -8,6 +8,7 @@
 #include <utility>
 #include <stack>
 #include <queue>
+#include <memory>
 
 namespace dl
 {
@@ -56,6 +57,12 @@ template<typename T>
 std::string repr(std::queue<T> const&);
 template<typename T>
 std::string repr(std::priority_queue<T> const&);
+template<typename T>
+std::string repr(std::unique_ptr<T> const&);
+template<typename T>
+std::string repr(std::shared_ptr<T> const&);
+template<typename T>
+std::string repr(std::weak_ptr<T> const&);
 std::string quoted(auto const&, char = '\"');
 
 std::string repr(std::nullptr_t);
@@ -129,6 +136,24 @@ std::string repr(IsIteratable auto const& container)
 std::string repr(HasReprMethod auto const& obj)
 {
     return obj.repr();
+}
+
+template<typename T>
+std::string repr(std::unique_ptr<T> const& u_ptr)
+{
+    return repr(u_ptr.get());
+}
+
+template<typename T>
+std::string repr(std::shared_ptr<T> const& u_ptr)
+{
+    return repr(u_ptr.get());
+}
+
+template<typename T>
+std::string repr(std::weak_ptr<T> const& u_ptr)
+{
+    return repr(u_ptr.get());
 }
 
 std::string quoted(auto const& obj, char delim)
