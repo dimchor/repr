@@ -30,6 +30,8 @@
     - C-style arrays (using `std::span`).
     - `std::byte`
     - `std::initializer_list`
+    - `std::optional`
+    - `std::any`
 
 ## Other features
 - Custom type support, by adding `repr()` as a public method in your class.
