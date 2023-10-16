@@ -73,6 +73,8 @@ std::string repr(std::initializer_list<T>);
 std::string quoted(auto const&, char = '\"');
 template<typename T>
 std::string repr(std::optional<T>);
+template<typename T>
+std::string repr(std::any const&);
 
 std::string repr(std::nullptr_t);
 std::string repr(void const*);
