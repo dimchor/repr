@@ -66,6 +66,8 @@ template<typename T>
 std::string repr(std::shared_ptr<T> const&);
 template<typename T>
 std::string repr(std::weak_ptr<T> const&);
+template<typename T>
+std::string repr(std::initializer_list<T>);
 std::string quoted(auto const&, char = '\"');
 
 std::string repr(std::nullptr_t);
