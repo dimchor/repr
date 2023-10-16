@@ -32,6 +32,7 @@
     - `std::initializer_list`
     - `std::optional`
     - `std::any`
+    - `std::complex`
 
 ## Other features
 - Custom type support, by adding `repr()` as a public method in your class.
