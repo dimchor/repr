@@ -11,6 +11,7 @@
 #include <memory>
 #include <cstddef>
 #include <cstdint>
+#include <initializer_list>
 
 namespace dl
 {
@@ -157,6 +158,12 @@ template<typename T>
 std::string repr(std::weak_ptr<T> const& u_ptr)
 {
     return repr(u_ptr.get());
+}
+
+template<typename T>
+std::string repr(std::initializer_list<T> l)
+{
+    return repr(std::vector<T>{std::move(l)});
 }
 
 std::string quoted(auto const& obj, char delim)

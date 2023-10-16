@@ -121,5 +121,8 @@ int main()
     std::array<int, 4> cpp_array{1, 2, 3, 4};
     print(cpp_array);
 
+    // initializer list test
+    std::cout << dl::repr({1, 2, 3, 4, 5, 6, 7, 8}) << '\n';
+
     return 0;
 }

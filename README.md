@@ -28,7 +28,8 @@
     - `std::tuple`,
     - `std::span`,
     - C-style arrays (using `std::span`).
-    - `std::byte` 
+    - `std::byte`
+    - `std::initializer_list`
 
 ## Other features
 - Custom type support, by adding `repr()` as a public method in your class.
